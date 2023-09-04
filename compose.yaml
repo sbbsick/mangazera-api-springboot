@@ -1,0 +1,17 @@
+version: '3.1'
+
+services:
+  db:
+    image: mongo:latest
+    container_name: mangazeradb_test-container
+    environment:
+      - MONGO_INITDB_ROOT_PASSWORD=123456
+      - MONGO_INITDB_ROOT_USERNAME=root
+      - MONGO_INITDB_DATABASE=mangazera_database-test
+    ports:
+      - "27017:27017"
+    volumes:
+      - mangazera_database-test:/data:/data/db
+
+volumes:
+  mangazera_database-test:
