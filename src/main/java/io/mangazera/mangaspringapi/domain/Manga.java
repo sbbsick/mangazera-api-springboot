@@ -1,8 +1,6 @@
 package io.mangazera.mangaspringapi.domain;
-import io.mangazera.mangaspringapi.dto.AuthorDTO;
-import io.mangazera.mangaspringapi.dto.MangaDTO;
+
 import jakarta.validation.constraints.NotBlank;
-import lombok.Builder;
 import lombok.Data;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
@@ -61,6 +59,4 @@ public class Manga implements Serializable {
         this.finishDate = finishDate;
         this.isFinished = isFinished;
     }
-
-
 }

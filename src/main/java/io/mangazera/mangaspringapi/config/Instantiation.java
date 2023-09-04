@@ -1,6 +1,8 @@
 package io.mangazera.mangaspringapi.config;
 
+import io.mangazera.mangaspringapi.domain.Author;
 import io.mangazera.mangaspringapi.domain.Manga;
+import io.mangazera.mangaspringapi.repository.AuthorRepository;
 import io.mangazera.mangaspringapi.repository.MangaRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
@@ -14,13 +16,15 @@ import java.util.TimeZone;
 @RequiredArgsConstructor
 public class Instantiation implements CommandLineRunner {
     private final MangaRepository mangaRepository;
+    private final AuthorRepository authorRepository;
 
     @Override
     public void run(String... args) throws Exception {
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-        sdf.setTimeZone(TimeZone.getTimeZone("GMT-3"));
+        sdf.setTimeZone(TimeZone.getTimeZone("GMT"));
 
         mangaRepository.deleteAll();
+        authorRepository.deleteAll();
 
         Manga onePiece = new Manga(null, "One Piece", "https://comicvine.gamespot.com/a/uploads/scale_large/6/67663/8132972-100.jpg",
                 "One Piece is a Japanese manga series written and illustrated by Eiichiro Oda. It has been serialized in Shueisha's Weekly Shōnen Jump magazine since July 1997, with its individual chapters compiled into 99 tankōbon volumes as of June 2021.", 1010, sdf.parse("22/07/1997"),
@@ -63,6 +67,19 @@ public class Instantiation implements CommandLineRunner {
 
 
         mangaRepository.saveAll(List.of(onePiece, naruto, dragonBall, bleach, berserk, hunterXHunter, onePunchMan, hajimeNoIppo, vinlandSaga, gantz, slamDunk));
+
+        Author author1 = new Author(null, "Eiichiro Oda", "https://comicvine.gamespot.com/a/uploads/scale_small/6/67663/8132972-100.jpg", sdf.parse("01/01/1975"), sdf.parse("01/01/1975"));
+        Author author2 = new Author(null, "Silas Batista", "https://comicvine.gamespot.com/a/uploads/scale_small/6/67663/8132972-100.jpg", sdf.parse("01/01/1975"), sdf.parse("01/01/1975"));
+
+        author1.getMangas().add(onePiece);
+        author1.getMangas().add(onePiece);
+
+        authorRepository.saveAll(List.of(author1, author2));
+
+        onePiece.getAuthors().addAll(List.of(author1,author2));
+
+        mangaRepository.save(onePiece);
+
 
 
     }

@@ -1,6 +1,6 @@
 package io.mangazera.mangaspringapi.domain;
 
-import io.mangazera.mangaspringapi.dto.MangaDTO;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 import org.springframework.data.annotation.Id;
@@ -34,6 +34,7 @@ public class Author implements Serializable {
     private Date deathDate;
 
     @DBRef(lazy = true)
+    @JsonIgnore
     List<Manga> mangas = new ArrayList<>();
 
     public Author() { }
