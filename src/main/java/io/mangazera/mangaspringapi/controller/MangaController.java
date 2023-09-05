@@ -1,6 +1,7 @@
 package io.mangazera.mangaspringapi.controller;
 
 import io.mangazera.mangaspringapi.domain.Manga;
+import io.mangazera.mangaspringapi.dto.AuthorDTO;
 import io.mangazera.mangaspringapi.dto.MangaDTO;
 import io.mangazera.mangaspringapi.service.MangaService;
 import io.mangazera.mangaspringapi.util.URL;

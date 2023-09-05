@@ -1,8 +1,11 @@
 package io.mangazera.mangaspringapi.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import io.mangazera.mangaspringapi.dto.MangaDTO;
 import jakarta.validation.constraints.NotBlank;
+import lombok.AccessLevel;
 import lombok.Data;
+import lombok.Setter;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -37,6 +40,8 @@ public class Author implements Serializable {
     @JsonIgnore
     List<Manga> mangas = new ArrayList<>();
 
+    List<MangaDTO> mangasDto = new ArrayList<>();
+
     public Author() { }
 
     public Author(String id, String name, String photo, Date birthDate, Date deathDate) {
@@ -46,4 +51,6 @@ public class Author implements Serializable {
         this.birthDate = birthDate;
         this.deathDate = deathDate;
     }
+
+
 }

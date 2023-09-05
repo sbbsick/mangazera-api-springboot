@@ -72,7 +72,7 @@ public class Instantiation implements CommandLineRunner {
         Author author2 = new Author(null, "Silas Batista", "https://comicvine.gamespot.com/a/uploads/scale_small/6/67663/8132972-100.jpg", sdf.parse("01/01/1975"), sdf.parse("01/01/1975"));
 
         author1.getMangas().add(onePiece);
-        author1.getMangas().add(onePiece);
+        author2.getMangas().add(onePiece);
 
         authorRepository.saveAll(List.of(author1, author2));
 

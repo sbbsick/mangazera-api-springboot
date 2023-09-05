@@ -24,6 +24,6 @@ public class MangaService {
 
     public Manga findById(String id) {
         return mangaRepository.findById(id)
-                .orElseThrow(() -> new NotFoundException("Manga ID: %s not found".formatted(id)));
+                .orElseThrow(() -> new NotFoundException("Manga with ID: %s not found".formatted(id)));
     }
 }
