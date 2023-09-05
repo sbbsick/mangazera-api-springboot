@@ -8,11 +8,10 @@ import io.mangazera.mangaspringapi.util.URL;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
@@ -37,5 +36,12 @@ public class MangaController {
     @GetMapping(path = "/id/{id}")
     public ResponseEntity<Manga> findById(@PathVariable String id) {
         return ResponseEntity.ok().body(mangaService.findById(id));
+    }
+
+    @PostMapping(path = "/insert")
+    public ResponseEntity<MangaDTO> insert(@RequestBody Manga manga) {
+        manga = mangaService.insert(manga);
+        MangaDTO mangaDto = MangaDTO.convertMangaIntoMangaDto(manga);
+        return ResponseEntity.status(HttpStatus.CREATED).body(mangaDto);
     }
 }

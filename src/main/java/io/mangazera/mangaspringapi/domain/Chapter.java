@@ -4,6 +4,7 @@ import io.mangazera.mangaspringapi.dto.MangaDTO;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.io.Serial;
@@ -25,15 +26,15 @@ public class Chapter implements Serializable {
     private String title;
 
     @NotBlank
-    private MangaDTO mangaDTO;
+    private String mangaId;
 
     List<String> pages = new ArrayList<>();
 
     public Chapter() { }
 
-    public Chapter(String id, String title, MangaDTO mangaDto) {
+    public Chapter(String id, String title, String mangaId) {
         this.id = id;
         this.title = title;
-        this.mangaDTO = mangaDto;
+        this.mangaId = mangaId;
     }
 }

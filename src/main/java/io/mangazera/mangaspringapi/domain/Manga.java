@@ -47,6 +47,8 @@ public class Manga implements Serializable {
     @DBRef(lazy = true)
     List<Chapter> chapters = new ArrayList<>();
 
+    //ToDo - Adicionar AuthorDTO para retornar pouco dados do Author
+
     public Manga() { }
 
     public Manga(String id, String title, String cover, String description, Integer chaptersTotal, Date releaseDate, Date finishDate, Boolean isFinished) {

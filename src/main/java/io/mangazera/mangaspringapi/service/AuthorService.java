@@ -27,4 +27,7 @@ public class AuthorService {
         return authorRepository.findById(id)
                 .orElseThrow(() -> new NotFoundException("Author with ID: %s not found".formatted(id)));
     }
+
+    //ToDo -> Implementar post, update e delete
+    //ToDo -> Tratar exceções
 }
